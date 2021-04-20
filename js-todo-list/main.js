@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function(){
   // 3 - 新增功能
+  let deleteFunnction = function(spanEl){
+    spanEl.target.parentElement.remove();
+  }
   document.getElementById('addBtn').addEventListener('click', function(e){
     let li = document.createElement('li');
     let span = document.createElement('span');
@@ -7,9 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     span.textContent = "x";
     span.classList.add('close');
-    span.addEventListener('click', function(spanEl){
-      spanEl.target.parentElement.remove();
-    });
+    span.addEventListener('click', deleteFunnction);
 
     li.textContent = text.value;
     text.value = "";
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     li.appendChild(span); 
+    li.insertAdjacentElement('beforeend', call)
+    
     e.target.parentElement.nextElementSibling.appendChild(li);
   });
 });
