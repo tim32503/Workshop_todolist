@@ -13,4 +13,10 @@ document.addEventListener('DOMContentLoaded', function(){
     li.appendChild(span); 
     document.querySelector('ul').appendChild(li);
   });
+
+  document.querySelectorAll('li').forEach(function(item) {
+    item.addEventListener('click', function(e){
+      e.target.classList.toggle('checked');
+    });
+  });
 });
