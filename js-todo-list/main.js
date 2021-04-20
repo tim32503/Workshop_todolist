@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     li.appendChild(span); 
-    li.insertAdjacentElement('beforeend', call)
     
     e.target.parentElement.nextElementSibling.appendChild(li);
   });
+
 });
