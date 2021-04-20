@@ -5,5 +5,13 @@ document.addEventListener('DOMContentLoaded', function(){
       e.target.classList.toggle('checked');
     });
   });
-  
+
+  // 2 - 刪除功能
+  document.querySelectorAll('.close').forEach(function(item){
+    item.addEventListener('click', function(e){
+      e.target.parentElement.remove();
+    });
+  });
+
+
 });
