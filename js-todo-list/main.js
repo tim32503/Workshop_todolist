@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     li.appendChild(span); 
-    document.querySelector('ul').appendChild(li);
+    e.target.parentElement.nextElementSibling.appendChild(li);
   });
 });
