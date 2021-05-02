@@ -1,8 +1,24 @@
 document.addEventListener('DOMContentLoaded', function(){
-  // 3 - 新增功能
-  let deleteFunnction = function(spanEl){
-    spanEl.target.parentElement.remove();
+
+  // 1 - 標記完成功能
+  let checkedFunction = function(e){
+    e.target.classList.toggle('checked');
   }
+
+  document.querySelectorAll('li').forEach(function(item) {
+    item.addEventListener('click', checkedFunction);
+  });
+
+  // 2 - 刪除功能
+  let deleteFunnction = function(e){
+    e.target.parentElement.remove();
+  }
+
+  document.querySelectorAll('.close').forEach(function(item){
+    item.addEventListener('click', deleteFunnction);
+  });
+
+  // 3 - 新增功能
   document.getElementById('addBtn').addEventListener('click', function(e){
     let li = document.createElement('li');
     let span = document.createElement('span');
@@ -14,12 +30,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     li.textContent = text.value;
     text.value = "";
-    li.addEventListener('click', function(liEl){
-      liEl.target.classList.toggle('checked');
-    });
+    li.addEventListener('click', checkedFunction);
 
     li.appendChild(span); 
     
     e.target.parentElement.nextElementSibling.appendChild(li);
   });
+
 });
