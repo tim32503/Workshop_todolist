@@ -1,26 +1,43 @@
 document.addEventListener('DOMContentLoaded', function(){
-  // 3 - 新增功能
-  let deleteFunnction = function(spanEl){
-    spanEl.target.parentElement.remove();
-  }
-  document.getElementById('addBtn').addEventListener('click', function(e){
-    let li = document.createElement('li');
-    let span = document.createElement('span');
-    let text = e.target.previousElementSibling;
+  let data = JSON.parse(localStorage.getItem('item')) || [];
+  let textbox = document.querySelector('#input');
 
-    span.textContent = "x";
-    span.classList.add('close');
-    span.addEventListener('click', deleteFunnction);
+  document.querySelector('ul').addEventListener();
+  updateList(data);
 
-    li.textContent = text.value;
-    text.value = "";
-    li.addEventListener('click', function(liEl){
-      liEl.target.classList.toggle('checked');
-    });
-
-    li.appendChild(span); 
+  document.getElementById('addBtn').addEventListener('click', function(){
+    const object = {
+      id: Date.now(),
+      content: textbox.value,
+      checked: false
+    }
+    data.push(object);
+    localStorage.setItem('item', JSON.stringify(data));
+    updateList(data);
+    textbox.value = '';
     
-    e.target.parentElement.nextElementSibling.appendChild(li);
   });
 
+  function updateList(itemsList){
+    let ul = document.querySelector('ul');
+    let html = '';
+  
+    for(let i = 0; i < itemsList.length; i++){
+      let li = document.createElement('li');
+      let span = document.createElement('span');
+  
+      span.textContent = 'x';
+      span.classList.add('close');
+      
+      li.textContent = itemsList[i].content;
+      textbox.value = '';
+  
+      li.appendChild(span); 
+      html += li.outerHTML;
+    }
+  
+    ul.innerHTML = ul.innerHTML + html;
+  }
+  
 });
+
